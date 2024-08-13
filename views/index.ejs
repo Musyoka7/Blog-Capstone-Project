@@ -30,17 +30,17 @@
         <input type="submit" value="Post">
     </form>
 
-    <form action="/edit" method="get">
-      <input type="text" name="Epost" placeholder="Edit Post">
-      <input type="submit" value="Edit">
-   </form>
     
     <hr>
     <div class = "container">
       <h2>Posts</h2>
       <ul>
-        <% Posts.forEach(post => { %>
-          <li><%= post %></li>
+        <% Posts.forEach((post, index) => { %>
+          <li>
+            <%= post %>
+            <a href="/edit?index=<%= index %>">Edit</a>
+          </li>
+          
         <%}); %>
       </ul>
     </div>

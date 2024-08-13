@@ -15,10 +15,21 @@ app.post("/submit" ,(req,res) => {
     res.redirect("/");
 });
 app.get("/edit", (req,res) => {
-    let EditPost = parseInt(req.body.Epost);
-    serac
+    const index = req.query.index;
+    const PostToEdit = posts[index];
+    res.render("edit.ejs",{
+        post: PostToEdit,
+        index: index
+    });
 
 })
+app.post("/edit", (req, res) => {
+    const index = req.body.index; // Index of the post to update
+    const updatedPost = req.body.updatedPost; // New content for the post
+    posts[index] = updatedPost; // Update the post in the array
+    console.log(`Post updated at index ${index}: ${updatedPost}`); // Log for debugging
+    res.redirect("/"); // Redirect to the main page to show updated posts
+});
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
