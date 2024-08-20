@@ -12,6 +12,20 @@
     
 
 }
-#heading{
+#header{
     font-size: large;
+    text-align: center;
+    color: black;
+    text-emphasis: bold;
+    text-decoration: none;
+    font-size: 2.25rem;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;;
 }   
+p{
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;;
+    text-align: center;
+    font-size: large;
+}
+body{
+    font-family:"Playfair Display", Georgia, "Times New Roman", serif; 
+}
