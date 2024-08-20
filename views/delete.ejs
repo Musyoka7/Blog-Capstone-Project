@@ -3,19 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Post</title>
-
+    <title>Delete Post</title>
 </head>
 <body>
     <%- include("partials/header.ejs") %>
-    <h2>Edit Post</h2>
-    <form action="/edit" method="post">
+    <form action="/delete" method="post">
         <input type="hidden" name="index" value="<%= index %>">
-        <input type="text" name="updatedPost" value= "<%= post %>">
-        <input type="submit" value="Save">
-     </form>
+        <input type="text" name="DeletePost" value="<%= post %>">
+        <input type="submit" value="Delete">
+    </form>
     
-     
-     <%- include("partials/footer.ejs") %>
+    <%- include("partials/footer.ejs") %>
 </body>
 </html>
