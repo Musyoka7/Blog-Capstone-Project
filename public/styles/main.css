@@ -1,13 +1,19 @@
+.container{
+    padding: 20px;
+    margin-bottom: 50px;
+
+}
 #footer{
     bottom: 0;
     display: flex;
     justify-content: center;
-    position: absolute;
+    position: relative;
     width: 100%;
     background-color: black;
     padding: 20px; /* Add padding to ensure the content is visible */
     height: auto;  /* Make sure the footer can grow with content */
     font-weight: bolder;
+    text-align: center;
     
     
 
@@ -19,13 +25,42 @@
     text-emphasis: bold;
     text-decoration: none;
     font-size: 2.25rem;
-    font-family: "Playfair Display", Georgia, "Times New Roman", serif;;
+    font-family: "Arial", sans-serif;
 }   
 p{
-    font-family: "Playfair Display", Georgia, "Times New Roman", serif;;
+    font-family: "Arial", sans-serif;
     text-align: center;
     font-size: large;
 }
-body{
-    font-family:"Playfair Display", Georgia, "Times New Roman", serif; 
+html, body{
+    font-family: "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+a{
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 4px;
+
+}
+a.delete{
+    background-color: #e74c3c;
+    color: white;
+}
+a.edit{
+    background-color: #007bff;
+    color: white;
+}
+ul{
+    list-style-type: none;
+}
+li{
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+small{
+    display: block;
+    margin-bottom: 10px;
 }
