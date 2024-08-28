@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Post</title>
+    <title>Edit Blog Post</title>
+    <link rel="stylesheet" href="/styles/main.css">
 
 </head>
 <body>
-    <%- include("partials/header.ejs") %>
-    <h2>Edit Post</h2>
-    <form action="/edit" method="post">
-        <input type="hidden" name="index" value="<%= index %>">
-        <input type="text" name="updatedPost" value= "<%= post %>">
-        <input type="submit" value="Save">
-     </form>
     
+    <h2>Edit Post</h2>
+
+    <form action="/edit/<%=id %>" method="post">
+        <input type="text" name= "title" value= "<%= title %>">
+        <textarea type="text" name= "content" rows="10"><%= content %></textarea>
+        <input type="text" name= "author" value="<%= author %>">
+        <button class="full-width" type="submit">
+            Save Post
+        </button>
+     </form>
+
      
-     <%- include("partials/footer.ejs") %>
 </body>
 </html>

@@ -29,15 +29,16 @@
 }   
 p{
     font-family: "Arial", sans-serif;
-    text-align: center;
+    text-align:left;
     font-size: large;
 }
 html, body{
     font-family: "Arial", sans-serif;
-    margin: 0;
-    padding: 0;
+    margin: auto;
+    padding: auto;
     box-sizing: border-box;
     overflow-x: hidden;
+    display: block;
 }
 a{
     text-decoration: none;
@@ -64,3 +65,29 @@ small{
     display: block;
     margin-bottom: 10px;
 }
+#newPostBtn{
+    background-color: green;
+    color: white;
+    padding: 5px;
+    margin: 30px;
+    text-align: center;
+}
+input, textarea{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    font-family: "Arial", sans-serif;
+}
+.full-width{
+    text-align: center;
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-family: "Arial", sans-serif;
+    font-size: 1em;
+    padding: 10px;
+}
+ 

@@ -9,7 +9,7 @@ let posts =[
         content:
           "Decentralized Finance (DeFi) is an emerging and rapidly evolving field in the blockchain industry. It refers to the shift from traditional, centralized financial systems to peer-to-peer finance enabled by decentralized technologies built on Ethereum and other blockchains. With the promise of reduced dependency on the traditional banking sector, DeFi platforms offer a wide range of services, from lending and borrowing to insurance and trading.",
         author: "Alex Thompson",
-        date: "2023-08-01T10:00:00Z",
+        date: new Date(),
       },
       {
         id: 2,
@@ -17,7 +17,7 @@ let posts =[
         content:
           "Artificial Intelligence (AI) is no longer a concept of the future. It's very much a part of our present, reshaping industries and enhancing the capabilities of existing systems. From automating routine tasks to offering intelligent insights, AI is proving to be a boon for businesses. With advancements in machine learning and deep learning, businesses can now address previously insurmountable problems and tap into new opportunities.",
         author: "Mia Williams",
-        date: "2023-08-05T14:30:00Z",
+        date: new Date(),
       },
       {
         id: 3,
@@ -25,7 +25,7 @@ let posts =[
         content:
           "Sustainability is more than just a buzzword; it's a way of life. As the effects of climate change become more pronounced, there's a growing realization about the need to live sustainably. From reducing waste and conserving energy to supporting eco-friendly products, there are numerous ways we can make our daily lives more environmentally friendly. This post will explore practical tips and habits that can make a significant difference.",
         author: "Samuel Green",
-        date: "2023-08-10T09:15:00Z",
+        date: new Date(),
       },
 ];
 
@@ -35,33 +35,55 @@ app.use(express.static("public"));
 app.get("/", (req,res) => {
     res.render("index.ejs", {Posts: posts});
 });
-app.post("/submit" ,(req,res) => {
-    const NewPost = req.body.Cpost;
-    posts.push(NewPost);
-    res.redirect("/");
+//create new post
+app.get("/new" ,(req,res) => { 
+    res.render("new.ejs", {
+        heading: "New Post"
+    })
 });
-app.get("/edit", (req,res) => {
-    const index = req.query.index;
-    const PostToEdit = posts[index];
+app.post("/post", (req,res) => {
+    const newPost = {
+        id: posts.length + 1,
+        title: req.body.title,
+        content: req.body.content,
+        author: req.body.author,
+        date: new Date()
+    }
+    posts.push(newPost);
+    res.redirect("/")
+})
+//edit current post
+app.get("/edit/:id", (req,res) => {
+    const param = parseInt(req.params.id);
+    const postToEdit = posts.find((post) => post.id == param);
     res.render("edit.ejs",{
-        post: PostToEdit,
-        index: index
+        id: param,
+        title: postToEdit.title,
+        content: postToEdit.content,
+        author: postToEdit.author
     });
 
 })
-app.get("/delete", (req,res) => {
-    const index = req.query.index
-    const PostToDelete = posts[index];
-    res.render("delete.ejs", {
-        post: PostToDelete,
-        index: index
-    });
+//delete a post from array
+app.get("/delete/:id", (req,res) => {
+    const param = parseInt(req.params.id);
+    const postToDelete = posts.findIndex((post)=> post.id == param);
+    posts.splice(postToDelete,1);
+    res.redirect("/");
 })
-app.post("/edit", (req, res) => {
-    const index = req.body.index; // Index of the post to update
-    const updatedPost = req.body.updatedPost; // New content for the post
-    posts[index] = updatedPost; // Update the post in the array
-    console.log(`Post updated at index ${index}: ${updatedPost}`); // Log for debugging
+
+app.post("/edit/:id", (req, res) => {
+    const param =parseInt(req.params.id); // Index of the post to update
+    const updatedPostIndex = posts.findIndex((post)=> post.id == param)
+    const updatedPost = {
+        id: param,
+        title: req.body.title,
+        content: req.body.content,
+        author: req.body.author,
+        date: new Date(),
+    }
+    posts[updatedPostIndex] = updatedPost; // Update the post in the array
+    console.log(`Post updated at index ${param}: ${updatedPost}`); // Log for debugging
     res.redirect("/"); // Redirect to the main page to show updated posts
 });
 app.post("/delete", (req,res) => {
