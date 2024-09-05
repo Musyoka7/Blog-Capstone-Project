@@ -56,9 +56,13 @@ html, body{
     color: #ccc;
    
 }
-footer a{
-    margin: 0px 10px;
+#footer a{
+    margin: 0px 0px;
+    padding: auto;
     font-size: 1rem;
+}
+#footer .fab{
+    margin-right: 10px;
 }
 p{
     font-family: "Arial", sans-serif;
