@@ -1,8 +1,15 @@
 import express from "express";
 import bodyParser from "body-parser";
-import pg from 
+import pg from "pg";
 const app = express();
 const port = 3000;
+const db = new pg.Pool({
+  user: "postgres",
+  host: "localhost",
+  database: "blog",
+  password: "Shaggypet2015",
+  port: 5432,
+});
 let posts =[
     {
         id: 1,
@@ -33,8 +40,17 @@ let posts =[
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.get("/", (req,res) => {
-    res.render("index.ejs", {Posts: posts});
+app.get("/", async (req,res) => {
+    
+    try {
+        const result = await db.query("SELECT * FROM posts ORDER BY date DESC")
+        res.render("index.ejs", {Posts: result.rows});
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error retrieving posts");
+        
+    }
+    
 });
 //create new post
 app.get("/new" ,(req,res) => { 
@@ -42,16 +58,18 @@ app.get("/new" ,(req,res) => {
         heading: "New Post"
     })
 });
-app.post("/post", (req,res) => {
-    const newPost = {
-        id: posts.length + 1,
-        title: req.body.title,
-        content: req.body.content,
-        author: req.body.author,
-        date: new Date()
+app.post("/post", async (req,res) => {
+    const {title, content, author } = req.body
+    console.log(req.body);
+    try {
+        await db.query("INSERT INTO posts(title, content, author) VALUES($1, $2, $3)", 
+            [title, content, author]
+        )
+        res.redirect("/");
+    } catch (error) {
+        console.error(error, );
+        res.status(500).send("Error Adding new post");
     }
-    posts.push(newPost);
-    res.redirect("/")
 })
 //edit current post
 app.get("/edit/:id", (req,res) => {
