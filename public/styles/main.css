@@ -46,11 +46,19 @@ html, body{
     justify-content: center;
     position: relative;
     width: 100%;
-    background-color: black;
+    background-color: #333;
     padding: 20px; /* Add padding to ensure the content is visible */
     height: auto;  /* Make sure the footer can grow with content */
     font-weight: bolder;
     text-align: center;
+    padding-top: 3rem ;
+    padding-bottom: 3rem;
+    color: #ccc;
+   
+}
+footer a{
+    margin: 0px 10px;
+    font-size: 1rem;
 }
 p{
     font-family: "Arial", sans-serif;
