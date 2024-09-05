@@ -9,16 +9,19 @@
 <body>
     <div class="container">
         <h1><%= heading %></h1>
-    </div>
-
-    <form action="/post" method="post">
+        <form action="/post" method="post">
         <input type="text" placeholder="Title" name="title" required>
         <textarea type="text" placeholder="Content" name="content" required rows="10"></textarea>
         <input type="text" placeholder="Author" name="author" required>
         <button class="full-width" type="submit">
             Create Post
         </button>
-    </form>
+        </form>
+
+    </div> 
+    
+
+    
     
 </body>
 </html>
