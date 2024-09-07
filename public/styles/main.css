@@ -21,10 +21,12 @@ html, body{
     color: white;
     padding: 20px;
     text-align: center;
+    align-items: center;
+  
 }
 #main-header a {
     color: white;
-    text-decoration: none;
+    text-decoration: underline;
     font-size: 2rem;
     font-family: 'Playfair Display', serif;
 }
@@ -128,7 +130,7 @@ header {
     background-color: #f8f9fa; /* Subtle background */
     padding: 20px;
     text-align: center;
-    font-family: 'Playfair Display', serif; /* Elegant serif font */
+    font-family: 'Poppins', sans-serif; /* Elegant serif font */
 }
 #welcome-line{
     text-align: center;
